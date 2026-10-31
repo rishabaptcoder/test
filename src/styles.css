@@ -1,0 +1,145 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-saffron: var(--saffron);
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-tint: var(--tint);
+  --shadow-soft: 0 1px 2px oklch(0.2 0.05 260 / 4%), 0 4px 16px oklch(0.2 0.05 260 / 5%);
+}
+
+:root {
+  --navy: oklch(0.27 0.07 257);        /* #0F2747 */
+  --saffron: oklch(0.72 0.15 62);      /* #E8912D */
+  --ink: oklch(0.18 0.03 262);         /* #0B1220 */
+  --slate: oklch(0.5 0.03 262);        /* #5B6678 */
+  --tint: oklch(0.94 0.015 262);       /* #E8EDF5 */
+  --background: oklch(0.97 0.007 85);  /* #F7F5F0 */
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--navy);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--tint);
+  --secondary-foreground: var(--navy);
+  --muted: var(--tint);
+  --muted-foreground: var(--slate);
+  --accent: var(--saffron);
+  --accent-foreground: var(--navy);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.01 85);        /* #E2DED6 */
+  --input: oklch(0.9 0.01 85);
+  --ring: var(--navy);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 26px;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (min-width: 768px) { body { font-size: 18px; line-height: 28px; } }
+  h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--color-navy); font-weight: 500; letter-spacing: 0; }
+}
+
+@utility h1 { font-size: 36px; line-height: 44px; @media (min-width: 768px) { font-size: 56px; line-height: 64px; } }
+@utility h2 { font-size: 28px; line-height: 36px; @media (min-width: 768px) { font-size: 40px; line-height: 48px; } }
+@utility h3 { font-size: 22px; line-height: 30px; @media (min-width: 768px) { font-size: 28px; line-height: 36px; } }
+@utility h4 { font-size: 20px; line-height: 28px; }
+@utility text-small { font-size: 14px; line-height: 20px; }
+@utility eyebrow { font-size: 13px; line-height: 16px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: var(--color-slate); }
+@utility container-site { width: 100%; max-width: 1248px; margin-inline: auto; padding-inline: 20px; @media (min-width: 768px) { padding-inline: 24px; } }
+@utility section-pad { padding-block: 64px; @media (min-width: 768px) { padding-block: 96px; } }
+
+@keyframes institutional-logo-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.institutional-logo-marquee {
+  overflow: hidden;
+}
+
+.institutional-logo-track {
+  display: flex;
+  width: max-content;
+  animation: institutional-logo-scroll 100s linear infinite;
+  will-change: transform;
+}
+
+.institutional-logo-sequence {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .institutional-logo-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .institutional-logo-sequence[aria-hidden="true"] {
+    display: none;
+  }
+
+  .institutional-logo-marquee {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+}
+
+.floating-whatsapp {
+  position: fixed;
+  z-index: 50;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 767px) {
+  .floating-whatsapp {
+    right: 17px;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+}
