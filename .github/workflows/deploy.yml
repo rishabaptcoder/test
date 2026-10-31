@@ -34,6 +34,11 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
 
+      - name: Prefix static public asset paths for GitHub Pages subfolder
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+        run: node fix-paths.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
